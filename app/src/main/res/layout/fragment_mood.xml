@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Header -->
+    <TextView
+        android:id="@+id/tvMoodHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mood Journal"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:paddingBottom="16dp"/>
+
+    <!-- Add Mood Button -->
+    <Button
+        android:id="@+id/fabAddMood"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Mood"
+        android:layout_gravity="center_horizontal"/>
+
+    <!-- RecyclerView to show mood list -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerMoods"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingTop="16dp"
+        android:clipToPadding="false"/>
+
+</LinearLayout>
+    <!-- FloatingActionButton to share mood -->
+<com.google.android.material.floatingactionbutton.FloatingActionButton
+android:id="@+id/fabShareMood"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_gravity="bottom|end"
+android:layout_margin="16dp"
+android:src="@drawable/ic_share"
+android:contentDescription="Share Mood"/>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
