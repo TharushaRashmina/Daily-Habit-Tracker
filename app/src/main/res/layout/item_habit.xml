@@ -1,12 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="wrap_content"
-    android:layout_marginVertical="6dp" android:layout_marginHorizontal="4dp" android:padding="12dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="8dp"
+    android:layout_marginHorizontal="16dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp"
+    app:strokeWidth="0dp"
+    android:backgroundTint="@android:color/white">
 
-    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical">
-        <TextView android:id="@+id/tvHabitTitle" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:textSize="16sp" android:text="Habit title"/>
-        <CheckBox android:id="@+id/cbCompleted" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
-        <ImageButton android:id="@+id/btnEdit" android:layout_width="36dp" android:layout_height="36dp" android:layout_marginStart="8dp" android:background="?attr/selectableItemBackgroundBorderless" android:src="@drawable/ic_edit" />
-        <ImageButton android:id="@+id/btnDelete" android:layout_width="36dp" android:layout_height="36dp" android:layout_marginStart="6dp" android:background="?attr/selectableItemBackgroundBorderless" android:src="@drawable/ic_delete" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="16dp"
+        android:minHeight="72dp">
+
+        <CheckBox
+            android:id="@+id/cbCompleted"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:buttonTint="@android:color/holo_green_light"
+            android:scaleX="1.2"
+            android:scaleY="1.2"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvHabitTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                android:text="Habit title"
+                android:maxLines="2"
+                android:ellipsize="end"/>
+
+            <TextView
+                android:id="@+id/tvHabitNotes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@android:color/darker_gray"
+                android:text="Habit notes or description"
+                android:layout_marginTop="4dp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:visibility="gone"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginStart="8dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnEdit"
+                style="@style/Widget.Material3.Button.IconButton"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="4dp"
+                app:icon="@drawable/ic_edit"
+                app:iconTint="@android:color/holo_blue_bright"
+                app:iconSize="20dp"
+                android:backgroundTint="@android:color/transparent"
+                app:rippleColor="@android:color/holo_blue_light"
+                android:contentDescription="Edit habit"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnDelete"
+                style="@style/Widget.Material3.Button.IconButton"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                app:icon="@drawable/ic_delete"
+                app:iconTint="@android:color/holo_red_light"
+                app:iconSize="20dp"
+                android:backgroundTint="@android:color/transparent"
+                app:rippleColor="@android:color/holo_red_light"
+                android:contentDescription="Delete habit"/>
+
+        </LinearLayout>
+
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

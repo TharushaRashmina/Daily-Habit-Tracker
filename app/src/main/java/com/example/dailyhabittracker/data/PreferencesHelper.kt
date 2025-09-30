@@ -54,6 +54,23 @@ class PreferencesHelper(private val context: Context) {
         moods = list
     }
 
+    // Water tracking methods for hydration notifications
+    fun getDailyWaterCount(): Int {
+        val today = java.text.SimpleDateFormat("yyyy-MM-dd", java.util.Locale.getDefault()).format(java.util.Date())
+        return prefs.getInt("water_count_$today", 0)
+    }
+
+    fun incrementDailyWaterCount() {
+        val today = java.text.SimpleDateFormat("yyyy-MM-dd", java.util.Locale.getDefault()).format(java.util.Date())
+        val currentCount = getDailyWaterCount()
+        prefs.edit().putInt("water_count_$today", currentCount + 1).apply()
+    }
+
+    fun resetDailyWaterCount() {
+        val today = java.text.SimpleDateFormat("yyyy-MM-dd", java.util.Locale.getDefault()).format(java.util.Date())
+        prefs.edit().putInt("water_count_$today", 0).apply()
+    }
+
     companion object {
         private const val KEY_HABITS = "habits"
         private const val KEY_MOODS = "moods"

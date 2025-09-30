@@ -4,6 +4,9 @@
 
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"/>
+    <uses-permission android:name="android.permission.USE_EXACT_ALARM"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 
     <application
         android:allowBackup="true"
@@ -25,7 +28,13 @@
         </activity>
 
         <receiver android:name=".receivers.HydrationReceiver"
-            android:exported="false" />
+            android:exported="false"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="action_drink_water" />
+                <action android:name="action_snooze" />
+            </intent-filter>
+        </receiver>
 
         <receiver android:name=".widgets.HabitWidgetProvider"
             android:exported="true"

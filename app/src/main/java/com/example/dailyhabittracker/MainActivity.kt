@@ -3,6 +3,7 @@ package com.example.dailyhabittracker
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import com.example.dailyhabittracker.ui.HomeFragment
 import com.example.dailyhabittracker.ui.HabitsFragment
 import com.example.dailyhabittracker.ui.MoodFragment
 import com.example.dailyhabittracker.ui.SettingsFragment
@@ -27,6 +28,7 @@ class MainActivity : AppCompatActivity() {
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNav)
         bottomNav.setOnItemSelectedListener { item ->
             val fragment = when(item.itemId) {
+                R.id.menu_home -> HomeFragment()
                 R.id.menu_habits -> HabitsFragment()
                 R.id.menu_mood -> MoodFragment()
                 else -> SettingsFragment()
@@ -37,7 +39,7 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
-        // Select default fragment
-        if (savedInstanceState == null) bottomNav.selectedItemId = R.id.menu_habits
+        // Select default fragment - now home instead of habits
+        if (savedInstanceState == null) bottomNav.selectedItemId = R.id.menu_home
     }
 }
