@@ -3,16 +3,18 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="8dp"
+    android:padding="12dp"
     android:gravity="center_vertical"
     android:background="?android:attr/selectableItemBackground">
 
-    <CheckBox
-        android:id="@+id/checkboxHabit"
+    <!-- Bullet point indicator -->
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="12dp"
-        android:buttonTint="@android:color/holo_green_light" />
+        android:text="•"
+        android:textSize="20sp"
+        android:textColor="@android:color/holo_orange_dark"
+        android:layout_marginEnd="12dp" />
 
     <TextView
         android:id="@+id/textHabitTitle"

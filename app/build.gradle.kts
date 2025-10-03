@@ -59,4 +59,5 @@ dependencies {
     implementation("androidx.recyclerview:recyclerview:1.3.2")
     implementation("com.google.code.gson:gson:2.10.1")
     implementation("androidx.preference:preference-ktx:1.2.0")
+    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
 }
