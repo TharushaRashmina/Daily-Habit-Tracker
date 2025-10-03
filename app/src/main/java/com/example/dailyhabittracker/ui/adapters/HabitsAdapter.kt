@@ -27,9 +27,17 @@ class HabitsAdapter(
         val habit = habits[position]
         holder.binding.tvHabitTitle.text = habit.title
         val today = LocalDate.now().toString()
-        holder.binding.cbCompleted.isChecked = habit.isCompletedMap[today] == true
+        val isCompleted = habit.isCompletedMap[today] == true
 
-        holder.binding.cbCompleted.setOnClickListener { onToggle(habit) }
+        // Set checkbox state without triggering listener
+        holder.binding.cbCompleted.setOnClickListener(null)
+        holder.binding.cbCompleted.isChecked = isCompleted
+
+        // Set click listener after setting the state
+        holder.binding.cbCompleted.setOnClickListener {
+            onToggle(habit)
+        }
+
         holder.binding.btnEdit.setOnClickListener { onEdit(habit) }
         holder.binding.btnDelete.setOnClickListener { onDelete(habit) }
     }

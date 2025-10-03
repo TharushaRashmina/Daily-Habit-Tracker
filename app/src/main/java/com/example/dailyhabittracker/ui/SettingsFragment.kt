@@ -103,16 +103,37 @@ class SettingsFragment : Fragment() {
 
         // Add water button
         btnAddWater.setOnClickListener {
-            prefs.incrementDailyWaterCount()
-            updateWaterProgress()
+            val currentCount = prefs.getDailyWaterCount()
+            val maxGlasses = 8
 
-            // Show quick feedback
-            val snackbar = com.google.android.material.snackbar.Snackbar.make(
-                view, "Water logged! Keep it up! 💧",
-                com.google.android.material.snackbar.Snackbar.LENGTH_SHORT
-            )
-            snackbar.setBackgroundTint(resources.getColor(android.R.color.holo_blue_light, null))
-            snackbar.show()
+            if (currentCount >= maxGlasses) {
+                // Show message when limit is reached
+                val snackbar = com.google.android.material.snackbar.Snackbar.make(
+                    view, "🎉 Daily goal achieved! You've had $maxGlasses glasses today!",
+                    com.google.android.material.snackbar.Snackbar.LENGTH_LONG
+                )
+                snackbar.setBackgroundTint(resources.getColor(android.R.color.holo_green_light, null))
+                snackbar.show()
+            } else {
+                prefs.incrementDailyWaterCount()
+                updateWaterProgress()
+
+                val newCount = prefs.getDailyWaterCount()
+
+                // Show different messages based on progress
+                val message = when {
+                    newCount >= maxGlasses -> "🎉 Congratulations! Daily goal achieved! 💧"
+                    newCount >= maxGlasses - 1 -> "🎯 One more glass to reach your goal! 💧"
+                    else -> "Water logged! Keep it up! 💧"
+                }
+
+                val snackbar = com.google.android.material.snackbar.Snackbar.make(
+                    view, message,
+                    com.google.android.material.snackbar.Snackbar.LENGTH_SHORT
+                )
+                snackbar.setBackgroundTint(resources.getColor(android.R.color.holo_blue_light, null))
+                snackbar.show()
+            }
         }
 
         return view

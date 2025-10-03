@@ -113,8 +113,8 @@
                             android:id="@+id/switchHydration"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:thumbTint="@android:color/white"
-                            app:trackTint="@android:color/holo_blue_light"/>
+                            app:thumbTint="@color/switch_thumb_color"
+                            app:trackTint="@color/switch_track_color"/>
 
                     </LinearLayout>
 

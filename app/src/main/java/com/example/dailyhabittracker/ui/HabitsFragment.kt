@@ -2,6 +2,7 @@ package com.example.dailyhabittracker.ui
 
 import android.os.Bundle
 import android.view.*
+import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dailyhabittracker.R
@@ -52,8 +53,17 @@ class HabitsFragment : Fragment() {
     }
 
     private fun deleteHabit(habit: Habit) {
-        prefs.deleteHabit(habit.id)
-        refresh()
+        // Show confirmation dialog before deleting
+        androidx.appcompat.app.AlertDialog.Builder(requireContext())
+            .setTitle("Delete Habit")
+            .setMessage("Are you sure you want to delete \"${habit.title}\"?\n\nThis action cannot be undone and will remove all progress data for this habit.")
+            .setPositiveButton("Delete") { _, _ ->
+                prefs.deleteHabit(habit.id)
+                refresh()
+            }
+            .setNegativeButton("Cancel", null)
+            .setIcon(android.R.drawable.ic_dialog_alert)
+            .show()
     }
 
     private fun refresh() {
@@ -69,11 +79,26 @@ class HabitsFragment : Fragment() {
         if (list.isEmpty()) {
             binding.tvProgress.text = "No habits yet"
             binding.progressBar.progress = 0
+            binding.tvProgressPercentage.text = "0%"
+            binding.tvProgressPercentage.visibility = View.VISIBLE
+            binding.ivCompletionTick.visibility = View.GONE
         } else {
             val done = list.count { it.isCompletedMap[today] == true }
-            val percent = done * 100 / list.size
-            binding.tvProgress.text = "$percent% completed today"
+            val total = list.size
+            val percent = done * 100 / total
+
+            binding.tvProgress.text = "$done of $total habits completed today"
             binding.progressBar.progress = percent
+
+            // Show tick icon when all habits completed, otherwise show percentage
+            if (percent == 100) {
+                binding.tvProgressPercentage.visibility = View.GONE
+                binding.ivCompletionTick.visibility = View.VISIBLE
+            } else {
+                binding.tvProgressPercentage.text = "$percent%"
+                binding.tvProgressPercentage.visibility = View.VISIBLE
+                binding.ivCompletionTick.visibility = View.GONE
+            }
         }
     }
 

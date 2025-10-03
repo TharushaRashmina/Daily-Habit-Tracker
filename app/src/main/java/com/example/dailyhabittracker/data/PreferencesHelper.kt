@@ -63,7 +63,12 @@ class PreferencesHelper(private val context: Context) {
     fun incrementDailyWaterCount() {
         val today = java.text.SimpleDateFormat("yyyy-MM-dd", java.util.Locale.getDefault()).format(java.util.Date())
         val currentCount = getDailyWaterCount()
-        prefs.edit().putInt("water_count_$today", currentCount + 1).apply()
+        val maxGlasses = 8
+
+        // Only increment if we haven't reached the maximum
+        if (currentCount < maxGlasses) {
+            prefs.edit().putInt("water_count_$today", currentCount + 1).apply()
+        }
     }
 
     fun resetDailyWaterCount() {

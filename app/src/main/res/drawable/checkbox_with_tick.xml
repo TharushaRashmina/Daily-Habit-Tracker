@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Checked state with green tick mark -->
+    <item android:state_checked="true">
+        <layer-list>
+            <!-- Background border -->
+            <item>
+                <shape android:shape="rectangle">
+                    <corners android:radius="3dp"/>
+                    <solid android:color="#F0F8F0"/>
+                    <stroke android:width="3dp" android:color="#4CAF50"/>
+                </shape>
+            </item>
+            <!-- Green tick mark -->
+            <item android:top="3dp" android:bottom="3dp" android:left="3dp" android:right="3dp">
+                <vector android:width="18dp" android:height="18dp"
+                        android:viewportWidth="24" android:viewportHeight="24">
+                    <path android:fillColor="#2E7D32"
+                          android:pathData="M9,16.17L4.83,12l-1.42,1.41L9,19 21,7l-1.41,-1.41z"/>
+                </vector>
+            </item>
+        </layer-list>
+    </item>
+
+    <!-- Unchecked state -->
+    <item android:state_checked="false">
+        <shape android:shape="rectangle">
+            <corners android:radius="3dp"/>
+            <solid android:color="#F8F8F8"/>
+            <stroke android:width="3dp" android:color="#757575"/>
+        </shape>
+    </item>
+</selector>
